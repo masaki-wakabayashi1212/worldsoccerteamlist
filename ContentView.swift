@@ -11,9 +11,12 @@ struct ContentView: View {
         NavigationView{
             List{
                 Section(header:Text("Italy").font(.system(size: 30)).fontWeight(.heavy)){
-                    //以下のコードを『ForEach(searchResults){item in』に変更するもエラー発生
-                    ForEach(emblemArray){item in
-                        NavigationLink(destination: emblemDetailView(emblem: item)){
+                    //以下のコードを『ForEach(searchResults,id:\.self){item in』に変更するもエラー発生。試しに、id:\.selfを消しても同じ
+                    //エラー内容１つ目は、『Cannot convert value of type '[String]' to expected argument type 'Binding<C>'
+                    //→（日本語訳：型 '[String]' の値を期待される引数型 'Binding<C>' に変換できません。）
+                    //エラー内容２つ目は、『Generic parameter 'C' could not be inferred』（日本語訳：ジェネリックパラメータ 'C' を推論できませんでした。）
+                    ForEach(emblemArray){item in　　//←ここで使用しているemblemArrayは、emblemphoto.swiftで作成した配列データから引っ張っている
+                        NavigationLink(destination: emblemDetailView(emblem: item)){　//←リストを選択すると、emblemdetailview.swiftで作成した詳細画面に遷移する
                             Rowview(emblem: item)
                         }
                     }
@@ -36,7 +39,7 @@ struct ContentView: View {
                 }
                 
                 Section(header:Text("Germany").font(.system(size: 30)).fontWeight(.heavy)){
-                    ForEach(emblembundeseArray){item in
+                    ForEach(emblembundeseArray){item in 
                         NavigationLink(destination: emblemDetailView(emblem: item)){
                             Rowview(emblem: item)
                         }
@@ -87,8 +90,13 @@ struct ContentView: View {
 //    var searchResults:[String]{
 //        if searchText .isEmpty{
 //            return emblemArray
+                //エラー内容３つ目：Cannot convert return expression of type '[emblemphoto]' to return type '[String]'（日本語訳：型 '[emblemphoto]' の return 式を型 '[String]' に変換することはできません。）
 //        }else{
 //            return emblemArray.filter{$0.contains(searchText)}
+                //エラー内容４つ目：Cannot convert return expression of type '[emblemphoto]' to return type '[String]'
+                //→（日本語訳:型 '[emblemphoto]' の return 式を型 '[String]' に変換することはできません。)
+                
+                //エラー内容５つ目：Value of type 'emblemphoto' has no member 'contains'（日本語訳：タイプ'emblemphoto'の値は、メンバー'contains'を持っていません。）
 //        }
 //    }
     
