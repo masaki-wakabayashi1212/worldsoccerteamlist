@@ -11,6 +11,7 @@ struct ContentView: View {
         NavigationView{
             List{
                 Section(header:Text("Italy").font(.system(size: 30)).fontWeight(.heavy)){
+                    //以下のコードを『ForEach(searchResults){item in』に変更するもエラー発生
                     ForEach(emblemArray){item in
                         NavigationLink(destination: emblemDetailView(emblem: item)){
                             Rowview(emblem: item)
@@ -82,6 +83,7 @@ struct ContentView: View {
         .scrollDismissesKeyboard(.immediately)
     }
     
+  //↓以下のコードで検索結果を表示させようとするもエラー。最終的には『emblempremireArray』『emblembundesArray』の検索結果も併せて表示できるような仕組みにしたい
 //    var searchResults:[String]{
 //        if searchText .isEmpty{
 //            return emblemArray
