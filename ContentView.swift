@@ -91,6 +91,8 @@ struct ContentView: View {
 //        if searchText .isEmpty{
 //            return emblemArray
                 //エラー内容３つ目：Cannot convert return expression of type '[emblemphoto]' to return type '[String]'（日本語訳：型 '[emblemphoto]' の return 式を型 '[String]' に変換することはできません。）
+                //『return emblemArray』の箇所を『return emblemphoto』に変更してみてもエラー発生。
+    
 //        }else{
 //            return emblemArray.filter{$0.contains(searchText)}
                 //エラー内容４つ目：Cannot convert return expression of type '[emblemphoto]' to return type '[String]'
